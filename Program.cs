@@ -1,9 +1,7 @@
 ﻿using ManyToManyLinqSample.DataSources;
+using ManyToManyLinqSample.Utilities;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ManyToManyLinqSample
 {
@@ -32,14 +30,23 @@ namespace ManyToManyLinqSample
             Console.WriteLine($"Let's try to find {employee.Name}'s scheduled operations:");
             Console.ReadLine();
 
-            var opList = Utilities.CrewMemberUtility.GetOperationsByEmployee(db, employee);
+            var opList = CrewMemberUtility.GetOperationsByEmployee(db, employee);
             foreach (var item in opList)
             {
                 Console.WriteLine($"Operation: {item.Id} {item.Type.Name}");
             }
+            Console.ReadLine();
 
-            Console.WriteLine($"Let's try to find {employee.Name}'s crew members for today:");
 
+            var op = opList.First();
+            Console.WriteLine($"Let's try to find {employee.Name}'s crew members for today, operation {op.Type.Name}:");
+            var empList = CrewMemberUtility.FindCrewMembersByEmployeeAndOperation(db, employee, op);
+
+            foreach (var item in empList)
+            {
+                Console.WriteLine($"Employee: {item.Employee.Name}");
+            }
+            Console.ReadLine();
 
             End();
         }
