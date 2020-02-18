@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSources\MockDatabase.cs" />
     <Compile Include="Models\Crew.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeSchedule.cs" />
